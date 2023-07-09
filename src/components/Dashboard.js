@@ -1,8 +1,7 @@
 const Dashboard = () => {
-    console.log('daaashbiardf')
     return(
         <div>
-            <h1 style={{ color: 'black' }}>Welcome to the Dashboard!</h1>
+            <h1 style={{ color: 'black' }}> Dashboard content number 1 !</h1>
         </div>
     );
 }

@@ -1,9 +1,11 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [token, setToken] = useState(null);
 
     const login = async (username, password) => {
         try {
@@ -19,6 +21,9 @@ export const AuthProvider = ({ children }) => {
                 // Login successful
                 const data = await response.json();
                 console.log('Login response:', data);
+                const token = data.token;
+                setToken(token);
+                sessionStorage.setItem('token', token);
                 setIsLoggedIn(true);
             } else {
                 // Login failed
@@ -57,10 +62,43 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setIsLoggedIn(false);
+        setToken(null);
+        sessionStorage.removeItem('token');
     };
 
+    const verifyToken = () => {
+        if (token) {
+            try {
+                const decodedToken = jwt_decode(token);
+                // Check if the token is expired
+                if (decodedToken.exp < Date.now() / 1000) {
+                    logout();
+                }
+            } catch (error) {
+                console.error('Token verification failed:', error);
+                logout();
+            }
+        }
+    };
+
+    useEffect(() => {
+        console.log('isLoggedIn0 ', isLoggedIn)
+        // Check if a token exists in session storage on component mount
+        const storedToken = sessionStorage.getItem('token');
+        console.log('storedToken', storedToken)
+        if (storedToken) {
+            setToken(storedToken);
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+    // Run token verification on component mount or whenever token changes
+    useEffect(() => {
+        verifyToken();
+    }, [token]);
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout, signup }}>
+        <AuthContext.Provider value={{ isLoggedIn, token, login, logout, signup }}>
             {children}
         </AuthContext.Provider>
     );
