@@ -1,9 +1,9 @@
 import React from 'react';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../provider/AuthProvider';
-import Home from '../components/HomePage';
+import Home from '../pages/HomePage';
 
-function PublicRoute({ children }) {
+function PublicRoute() {
     let { token } = useAuth();
     let location = useLocation();
 

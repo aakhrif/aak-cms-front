@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import SideBar from './SideBar';
-import MenuIcon from '@mui/icons-material/Menu';
-import { IconButton } from '@mui/material';
 import { Header } from './Header';
 
 export const Layout = ({ children }) => {
@@ -14,11 +12,10 @@ export const Layout = ({ children }) => {
     return (
         <div>
             <Header handleToggleDrawer={handleToggleDrawer} />
-            <div style={{ display: 'flex' }}>
-
+            <div className="content-wrapper" style={{ display: 'flex' }}>
                 <SideBar open={open} handleToggleDrawer={handleToggleDrawer} />
-                <div style={{ flex: 1 }}>{children}</div>
+                <div className="content">{children}</div>
             </div>
         </div>
-    )
-}
+    );
+};

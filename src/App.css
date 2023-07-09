@@ -28,6 +28,36 @@
   color: #61dafb;
 }
 
+.content-wrapper {
+  position: relative;
+}
+
+.content-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  background-color: lightblue;
+  z-index: -1;
+}
+
+.content {
+  flex: 1;
+  padding: 0 130px;
+  padding-top: 100px;
+  /* Add your desired padding values */
+}
+
+.table-with-border {
+  border: 1px solid #000000;
+  /* Add your desired border style */
+}
+
+.table-head {
+  background-color: lightgray;
+  /* Add your desired background color */
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

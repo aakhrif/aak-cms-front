@@ -1,11 +1,12 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import ErrorPage from './components/ErrorPage';
-import Dashboard from './components/Dashboard';
+import ErrorPage from './pages/ErrorPage';
+import Dashboard from './pages/Dashboard';
 import { AuthProvider } from './provider/AuthProvider';
-import PrivateRoute from './components/PrivateRoute';
-import PublicRoute from './components/PublicRoute';
+import PrivateRoute from './routing/PrivateRoute';
+import PublicRoute from './routing/PublicRoute';
 import Users from './pages/Users';
+import Contents from './pages/Contents';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="/error-page" element={<ErrorPage />} />
             <Route path="/dashboard" element={<PrivateRoute component={Dashboard} />} />
             <Route path="/dashboard/users" element={<PrivateRoute component={Users} />} />
+            <Route path="/dashboard/contents" element={<PrivateRoute component={Contents} />} />
           </Routes>
         </Router>
       </AuthProvider>

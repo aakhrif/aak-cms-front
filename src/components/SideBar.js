@@ -1,27 +1,32 @@
 import React from 'react';
 import { SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Home as HomeIcon, People as PeopleIcon } from '@mui/icons-material';
+import { Abc as AbcIcon, People as PeopleIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 const SideBar = ({ open, handleToggleDrawer }) => {
     const navigate = useNavigate();
 
-    const navigateTo = () => {
-        console.log('naviiiiiiiiigatr')
-        navigate('/dashboard/users');
+    const navigateTo = (suburl) => {
+        navigate(`/dashboard/${suburl}`);
         handleToggleDrawer();
     };
 
     return (
-        <SwipeableDrawer anchor="left" open={open} onClose={handleToggleDrawer} onOpen={handleToggleDrawer}>
-            <List>
-                <ListItem button onClick={handleToggleDrawer}>
+        <SwipeableDrawer
+            anchor="left"
+            open={open}
+            onClose={handleToggleDrawer}
+            onOpen={handleToggleDrawer}
+            sx={{ minWidth: '300px', minHeight: '100px' }}
+        >
+            <List sx={{ paddingTop: '100px' }}>
+                <ListItem button onClick={() => navigateTo('contents')}>
                     <ListItemIcon>
-                        <HomeIcon />
+                        <AbcIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Home" />
+                    <ListItemText primary="Abc" />
                 </ListItem>
-                <ListItem button onClick={navigateTo}>
+                <ListItem button onClick={() => navigateTo('users')}>
                     <ListItemIcon>
                         <PeopleIcon />
                     </ListItemIcon>
