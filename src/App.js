@@ -7,6 +7,7 @@ import PrivateRoute from './routing/PrivateRoute';
 import PublicRoute from './routing/PublicRoute';
 import Users from './pages/Users';
 import Contents from './pages/Contents';
+import Dynamics from './pages/Dynamics';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/dashboard" element={<PrivateRoute component={Dashboard} />} />
             <Route path="/dashboard/users" element={<PrivateRoute component={Users} />} />
             <Route path="/dashboard/contents" element={<PrivateRoute component={Contents} />} />
+            <Route path="/dashboard/dynamics" element={<PrivateRoute component={Dynamics} />} />
           </Routes>
         </Router>
       </AuthProvider>

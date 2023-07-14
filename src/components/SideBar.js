@@ -1,6 +1,6 @@
 import React from 'react';
 import { SwipeableDrawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Abc as AbcIcon, People as PeopleIcon } from '@mui/icons-material';
+import { Abc as AbcIcon, People as PeopleIcon, Sync as SyncIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 const SideBar = ({ open, handleToggleDrawer }) => {
@@ -31,6 +31,12 @@ const SideBar = ({ open, handleToggleDrawer }) => {
                         <PeopleIcon />
                     </ListItemIcon>
                     <ListItemText primary="Users" />
+                </ListItem>
+                <ListItem button onClick={() => navigateTo('dynamics')}>
+                    <ListItemIcon>
+                        <SyncIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dynamics" />
                 </ListItem>
             </List>
         </SwipeableDrawer>
